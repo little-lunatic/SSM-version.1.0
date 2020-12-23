@@ -11,7 +11,7 @@
                         http://www.springframework.org/schema/context/spring-context.xsd
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc.xsd
-                        http://www.springframework.org/schema/tx 
+                        http://www.springframework.org/schema/tx
                         http://www.springframework.org/schema/tx/spring-tx.xsd
                         http://www.springframework.org/schema/aop
                         http://www.springframework.org/schema/aop/spring-aop.xsd">
@@ -60,7 +60,7 @@
         <property name="basePackage" value="com.kk.dao"/>
      </bean>
 
-    <bean id="bookService" class="com.kk.service.BookServiceImp">
+    <bean id="bookService" class="com.kk.service.impl.BookServiceImp">
         <property name="bookDao" ref="bookMapper"/>
     </bean>
 
@@ -71,21 +71,21 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
     <!--    2.配置事务通知-->
-    <tx:advice id="txAdvice"
+    <tx:advice id="txAdv"
                transaction-manager="manager">
         <tx:attributes>
-            <tx:method name="deleteBook" propagation="REQUIRES_NEW"/>
-            <tx:method name="addBook" propagation="REQUIRES_NEW"/>
-            <tx:method name="updateBook"/>
-            <tx:method name="*"/>
+            <tx:method name="deleteBook" propagation="REQUIRED"/>
+            <tx:method name="addBook" propagation="REQUIRED"/>
+            <tx:method name="updateBook" propagation="REQUIRED"/>
+            <tx:method name="*" propagation="REQUIRED"/>
         </tx:attributes>
     </tx:advice>
 
     <!--    3.配置aop-->
     <aop:config>
-        <aop:pointcut id="pointcut"
-                      expression="execution(* com.kk.service.BookServiceImp.*(..))"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+        <aop:pointcut id="pointc"
+                      expression="execution(* com.kk.service.impl.BookServiceImp.*(..))"/>
+        <aop:advisor advice-ref="txAdv" pointcut-ref="pointc"/>
     </aop:config>
 
 </beans>

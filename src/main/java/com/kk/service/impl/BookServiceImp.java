@@ -1,7 +1,8 @@
-package com.kk.service;
+package com.kk.service.impl;
 
 import com.kk.dao.BookMapper;
 import com.kk.pojo.Books;
+import com.kk.service.BookService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
