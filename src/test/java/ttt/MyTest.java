@@ -19,7 +19,7 @@ public class MyTest {
         b.setCounts(55);
         b.setDetail("卡山谷的比较火爆");
         bookService.addBook(b);
-        int i = 1/0;
+
         for (Books book : bookService.fyAllBook()
              ) {
             System.out.println(book);
