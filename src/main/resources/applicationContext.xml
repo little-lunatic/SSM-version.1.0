@@ -17,10 +17,9 @@
                         http://www.springframework.org/schema/aop/spring-aop.xsd">
     <!-- 1.开启包扫描 -->
     <context:component-scan base-package="com.kk">
-        <context:exclude-filter type="annotation" expression="com.kk.controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-<!--    开启注解支持-->
-    <context:annotation-config/>
+
 
     <!--2.配置c3p0连接池  -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">

@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.awt.print.Book;
+import java.util.List;
 
 public class MyTest {
 
@@ -14,12 +15,7 @@ public class MyTest {
     public void test(){
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         BookService bookService = context.getBean("bookService",BookService.class);
-        Books b = new Books();
-        b.setBookName("asdsa");
-        b.setCounts(55);
-        b.setDetail("卡山谷的比较火爆");
-        bookService.addBook(b);
-
+        List<Books> books = bookService.queryAllBook();
         for (Books book : bookService.fyAllBook()
              ) {
             System.out.println(book);
